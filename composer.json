@@ -1,0 +1,22 @@
+{
+    "name": "crynobone/mailtracker",
+    "description": "E-mail Tracking Library on PHP",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "crynobone",
+            "email": "crynobone@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-0": { 
+            "MailTracker" : "src/" 
+        }
+    },
+    "require": {
+        "php":">=5.3.0"
+    },
+    "require-dev": {
+        "mockery/mockery": "dev-master"
+    }
+}
