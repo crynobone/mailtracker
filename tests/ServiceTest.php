@@ -22,9 +22,26 @@ class ServiceTest extends PHPUnit_Framework_TestCase {
 
 		$refl   = new \ReflectionObject($stub);
 		$db     = $refl->getProperty('db');
+
 		$db->setAccessible(true);
 
 		$this->assertInstanceOf('\MailTracker\Service', $stub);
 		$this->assertInstanceOf('\MailTracker\DatabaseInterface', $db->getValue($stub));
+	}
+
+	/**
+	 * Test generating a new tracking code.
+	 *
+	 * @test
+	 */
+	public function testGeneratingNewTrackingCode()
+	{
+		$dbMock = \Mockery::mock('MailTracker\DatabaseInterface');
+		$dbMock->shouldReceive('store')->once()->andReturn('arandomtrackingcode');
+		$stub = new \MailTracker\Service($dbMock);
+
+		$result = $stub->generate();
+
+		$this->assertEquals('arandomtrackingcode', $result->trackingCode);
 	}
 }

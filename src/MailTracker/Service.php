@@ -20,4 +20,17 @@ class Service {
 	{
 		$this->db = $db;
 	}
+
+	/**
+	 * Generate a new tracking.
+	 *
+	 * @access public
+	 * @return stdClass
+	 */
+	public function generate()
+	{
+		$trackingCode = $this->db->store();
+
+		return (object) compact('trackingCode');
+	}
 }
