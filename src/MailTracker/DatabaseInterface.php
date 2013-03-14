@@ -6,15 +6,15 @@ interface DatabaseInterface {
 	 * Find information by the tracking ID.
 	 *
 	 * @access public
-	 * @param  string   $tracking_code
+	 * @param  string   $trackingCode
 	 */
-	public function find($tracking_code);
+	public function find($trackingCode);
 
 	/**
 	 * Store a transaction and retrieve tracking ID.
 	 *
 	 * @access public
-	 * @return string $tracking_code
+	 * @return string $trackingCode
 	 */
 	public function store();
 }
