@@ -40,9 +40,9 @@ class ServiceTest extends PHPUnit_Framework_TestCase {
 		$dbMock->shouldReceive('store')->once()->andReturn('arandomtrackingcode');
 		$stub = new \MailTracker\Service($dbMock);
 
-		$result = $stub->generate();
+		$trackingCode = $stub->generate();
 
-		$this->assertEquals('arandomtrackingcode', $result->trackingCode);
+		$this->assertEquals('arandomtrackingcode', $trackingCode);
 	}
 
 	/**
@@ -66,10 +66,27 @@ class ServiceTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function testGivenTrackingCodeIsNotValid()
 	{
-		$dbMock = \Mockery::mock('MailTracker\DatabaseInterface');
-		$dbMock->shouldReceive('find')->with('arandomtrackingcode')->andReturn(false);
+		$dbMock = \Mockery::mock('\MailTracker\DatabaseInterface');
+		$dbMock->shouldReceive('find')->with('arandomtrackingcode')->once()->andReturn(false);
 		$stub = new \MailTracker\Service($dbMock);
 
 		$this->assertFalse($stub->check('arandomtrackingcode'));
+	}
+
+	/**
+	 * Test image can properly be served.
+	 *
+	 * @test
+	 */
+	public function testImageCanPropertlyBeServed()
+	{
+		$dbMock = \Mockery::mock('\MailTracker\DatabaseInterface');
+		$stub   = new \MailTracker\Service($dbMock);
+
+		$serve  = $stub->serve();
+
+		$this->assertEquals('image/gif', $serve->contentType);
+		$this->assertEquals("data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==",
+			$serve->data);
 	}
 }

@@ -25,13 +25,11 @@ class Service {
 	 * Generate a new tracking.
 	 *
 	 * @access public
-	 * @return stdClass
+	 * @return string
 	 */
 	public function generate()
 	{
-		$trackingCode = $this->db->store();
-
-		return (object) compact('trackingCode');
+		return $this->db->store();
 	}
 
 	/**
@@ -44,5 +42,20 @@ class Service {
 	public function check($trackingCode)
 	{
 		return $this->db->find($trackingCode);
+	}
+
+	/**
+	 * Serve the tracking image, ideally this should be call from a 
+	 * controller.
+	 *
+	 * @access public
+	 * @return string
+	 */
+	public function serve()
+	{
+		return (object) array(
+			"contentType" => "image/gif",
+			"data"        => "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==",
+		);
 	}
 }
