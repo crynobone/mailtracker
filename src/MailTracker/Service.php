@@ -33,4 +33,16 @@ class Service {
 
 		return (object) compact('trackingCode');
 	}
+
+	/**
+	 * Check/validate a tracking code.
+	 *
+	 * @access public
+	 * @param  string   $trackingCode
+	 * @return boolean
+	 */
+	public function check($trackingCode)
+	{
+		return $this->db->find($trackingCode);
+	}
 }

@@ -44,4 +44,32 @@ class ServiceTest extends PHPUnit_Framework_TestCase {
 
 		$this->assertEquals('arandomtrackingcode', $result->trackingCode);
 	}
+
+	/**
+	 * Test given tracking code is valid.
+	 *
+	 * @test
+	 */
+	public function testGivenTrackingCodeIsValid()
+	{
+		$dbMock = \Mockery::mock('MailTracker\DatabaseInterface');
+		$dbMock->shouldReceive('find')->with('arandomtrackingcode')->andReturn(true);
+		$stub = new \MailTracker\Service($dbMock);
+
+		$this->assertTrue($stub->check('arandomtrackingcode'));
+	}
+
+	/**
+	 * Test given tracking code is not valid.
+	 *
+	 * @test
+	 */
+	public function testGivenTrackingCodeIsNotValid()
+	{
+		$dbMock = \Mockery::mock('MailTracker\DatabaseInterface');
+		$dbMock->shouldReceive('find')->with('arandomtrackingcode')->andReturn(false);
+		$stub = new \MailTracker\Service($dbMock);
+
+		$this->assertFalse($stub->check('arandomtrackingcode'));
+	}
 }
