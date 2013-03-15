@@ -56,7 +56,7 @@ class Service {
 	{
 		return (object) array(
 			"contentType" => "image/gif",
-			"data"        => "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==",
+			"data"        => "R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==",
 		);
 	}
 }
