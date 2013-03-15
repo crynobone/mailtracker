@@ -87,7 +87,7 @@ class ServiceTest extends PHPUnit_Framework_TestCase {
 		$serve  = $stub->serve();
 
 		$this->assertEquals('image/gif', $serve->contentType);
-		$this->assertEquals("data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==",
+		$this->assertEquals("R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==",
 			$serve->data);
 	}
 }
