@@ -43,7 +43,7 @@ class DatabaseStub implements MailTracker\DatabaseInterface {
 		return ($this->mockTrackingCode === $trackingCode);
 	}
 
-	public function store()
+	public function create($data = array())
 	{
 		return $this->mockTrackingCode = (string) Rhumsaa\Uuid\Uuid::uuid1();
 	}

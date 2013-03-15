@@ -25,11 +25,12 @@ class Service {
 	 * Generate a new tracking.
 	 *
 	 * @access public
+	 * @param  array    $data
 	 * @return string
 	 */
-	public function generate()
+	public function generate($data = array())
 	{
-		return $this->db->store();
+		return $this->db->create($data);
 	}
 
 	/**

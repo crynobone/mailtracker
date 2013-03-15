@@ -14,7 +14,8 @@ interface DatabaseInterface {
 	 * Store a transaction and retrieve tracking ID.
 	 *
 	 * @access public
-	 * @return string $trackingCode
+	 * @param  array    $data
+	 * @return string   $trackingCode
 	 */
-	public function store();
+	public function create($data = array());
 }

@@ -37,7 +37,8 @@ class ServiceTest extends PHPUnit_Framework_TestCase {
 	public function testGeneratingNewTrackingCode()
 	{
 		$dbMock = \Mockery::mock('MailTracker\DatabaseInterface');
-		$dbMock->shouldReceive('store')->once()->andReturn('arandomtrackingcode');
+		$dbMock->shouldReceive('create')->with(array())
+			->once()->andReturn('arandomtrackingcode');
 		$stub = new \MailTracker\Service($dbMock);
 
 		$trackingCode = $stub->generate();
